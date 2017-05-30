@@ -4,6 +4,7 @@ Test project for refactoring Between.
 
 ## TODO
 - [ ] [Kotlin](https://kotlinlang.org/docs/reference/)
+  - [ ] Work well with [greenDAO](https://github.com/greenrobot/greenDAO)?
 - [ ] [Gradle 4.0](https://docs.gradle.org/4.0-milestone-2/release-notes.html)
   - [ ] Structure of gradle files
   - [ ] [New dependency configurations](https://developer.android.com/studio/preview/features/new-android-plugin-migration.html#new_configurations)
