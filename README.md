@@ -1,6 +1,11 @@
 # vcnc-refactoring-test
 Test project for refactoring Between.
 
+## How to build
+Make `key.properties` file to project root directory.
+```properties
+github_access_token=blahblahblah
+```
 
 ## TODO
 - [ ] [Kotlin](https://kotlinlang.org/docs/reference/)

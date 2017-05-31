@@ -2,6 +2,10 @@ apply plugin: "com.android.application"
 
 apply plugin: "kotlin-android"
 
+def keyPropertiesFile = rootProject.file("key.properties")
+def keyProperties = new Properties()
+keyProperties.load(new FileInputStream(keyPropertiesFile))
+
 android {
     compileSdkVersion "android-O"
     buildToolsVersion "26.0.0-rc2"
@@ -11,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+        buildConfigField "String", "GITHUB_ACCESS_TOKEN", "\"${keyProperties["github_access_token"]}\""
     }
     buildTypes {
         release {
@@ -19,7 +24,6 @@ android {
         }
     }
     flavorDimensions "base"
-
     productFlavors {
         pre21 {
             minSdkVersion 16
@@ -29,6 +33,9 @@ android {
             minSdkVersion 21
             dimension "base"
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
     }
 }
 
@@ -43,10 +50,14 @@ dependencies {
     implementation "com.android.support:cardview-v7:26.0.0-beta1"
     implementation "com.android.support:recyclerview-v7:26.0.0-beta1"
     implementation "com.android.support:design:26.0.0-beta1"
+    implementation "com.android.support.constraint:constraint-layout:1.0.2"
     implementation "io.reactivex.rxjava2:rxjava:2.1.0"
     implementation "com.google.dagger:dagger:2.11"
     annotationProcessor "com.google.dagger:dagger-android-processor:2.11" // TODO: kapt
     implementation "com.squareup.retrofit2:retrofit:2.3.0"
+    implementation "com.squareup.retrofit2:converter-jackson:2.3.0"
+    implementation "com.fasterxml.jackson.core:jackson-core:2.8.6"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.8.6"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.7"
     implementation "com.squareup.okhttp3:okhttp:3.8.0"
-    implementation "com.android.support.constraint:constraint-layout:1.0.2"
 }
