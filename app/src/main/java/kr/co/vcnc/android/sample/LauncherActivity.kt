@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import kr.co.vcnc.android.sample.feature.repository.RepositoryListActivity
 
 
 class LauncherActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class LauncherActivity : AppCompatActivity() {
     }
 
     fun redirectToNext() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, RepositoryListActivity::class.java))
         finish()
     }
 }

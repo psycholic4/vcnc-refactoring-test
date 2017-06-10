@@ -1,15 +1,15 @@
-package kr.co.vcnc.android.sample
+package kr.co.vcnc.android.sample.feature.repository
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
+import android.content.Context
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.reactivex.Single
+import io.reactivex.Maybe
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kr.co.vcnc.android.sample.BuildConfig
 import kr.co.vcnc.android.sample.api.GithubService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -17,13 +17,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
+class RepositoryListViewModel(val context: Context) {
+    val adapter = RepositoryListAdapter()
 
-class MainActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+    // TODO: loadMore
+    fun loadRepositories() {
         // TODO: apply dagger
         // TODO: Below codes are just for Simple Test
         val mapper = ObjectMapper()
@@ -40,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                     val request = chain.request()
                             .newBuilder()
                             .header("Authorization", "token ${BuildConfig.GITHUB_ACCESS_TOKEN}")
-                            .header("User-Agent", packageName)
+                            .header("User-Agent", context.packageName)
                             .build()
                     chain.proceed(request)
                 }
@@ -52,14 +50,15 @@ class MainActivity : AppCompatActivity() {
                 .client(httpClient)
                 .build()
 
-        Single.fromCallable {
+        Maybe.fromCallable {
             retrofit.create(GithubService::class.java)
                     .searchRepositories("topic:android", 0, 32)
                     .execute()
                     .body()
         }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ searchResult ->
-                    Log.d("fuck", searchResult?.toString())
+                    adapter.repositories = searchResult?.items ?: arrayListOf()
                 })
     }
 }

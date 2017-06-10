@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".feature.repository.RepositoryListActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

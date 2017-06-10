@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">VCNC Refactoring Test</string>
+    <string name="repository_list_activity_title">Popular Repositories</string>
 </resources>

@@ -1,10 +1,16 @@
 # vcnc-refactoring-test
 Test project for refactoring Between.
 
+**Compilation failed now. (due to databinding + kotlin issues)**
+
 ## How to build
 Make `key.properties` file to project root directory.
 ```properties
 github_access_token=blahblahblah
+```
+Run a gradle task.
+```
+./gradlew iPoD
 ```
 
 ## TODO
