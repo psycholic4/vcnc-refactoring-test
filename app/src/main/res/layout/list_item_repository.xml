@@ -3,6 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="kr.co.vcnc.android.sample.feature.repository.RepositoryListItemViewModel"/>
@@ -45,16 +46,53 @@
             app:layout_constraintTop_toBottomOf="@+id/name"
             tools:layout_editor_absoluteX="0dp"
             tools:text="Test project for refactoring Between."/>
+        <!-- TODO: Is vertical aligning possible without LinearLayout? -->
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description">
+            <ImageView
+                android:id="@+id/star_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_star_black_24dp"/>
+            <TextView
+                android:id="@+id/star_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{String.valueOf(viewModel.repository.stargazersCount)}"
+                tools:text="3,142"/>
+            <ImageView
+                android:id="@+id/fork_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:visibility="@{viewModel.repository.forksCount > 0 ? View.VISIBLE : View.GONE}"
+                app:srcCompat="@drawable/ic_call_split_black_24dp"/>
+            <TextView
+                android:id="@+id/fork_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{String.valueOf(viewModel.repository.forksCount)}"
+                android:visibility="@{viewModel.repository.forksCount > 0 ? View.VISIBLE : View.GONE}"
+                tools:text="44"/>
+        </LinearLayout>
         <View
             android:id="@+id/divider"
             android:layout_width="0dp"
             android:layout_height="0.5dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
             android:layout_marginTop="16dp"
             android:background="@color/theme_contents_lightgray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description"/>
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
     </android.support.constraint.ConstraintLayout>
 </layout>

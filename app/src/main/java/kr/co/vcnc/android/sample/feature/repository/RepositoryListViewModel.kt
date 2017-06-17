@@ -23,7 +23,6 @@ class RepositoryListViewModel(val context: Context) {
     // TODO: loadMore
     fun loadRepositories() {
         // TODO: apply dagger
-        // TODO: Below codes are just for Simple Test
         val mapper = ObjectMapper()
         mapper.registerModule(KotlinModule())
         mapper.propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
