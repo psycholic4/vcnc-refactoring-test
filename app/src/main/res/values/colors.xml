@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="theme_main">#34D6CE</color>
+    <color name="theme_bar_contents">#FFFFFF</color>
+    <color name="theme_dark">#14C1C7</color>
+    <color name="theme_btn">#14C1C7</color>
+    <color name="theme_rice">#FFFFFF</color>
+    <color name="theme_card">#FFFFFF</color>
+    <color name="theme_contents_black">#262626</color>
+    <color name="theme_contents_duskblack">#555555</color>
+    <color name="theme_contents_darkgray">#919191</color>
+    <color name="theme_contents_midgray">#C8C8C8</color>
+    <color name="theme_contents_lightgray">#DCDCDC</color>
+    <color name="theme_contents_foggy">#F3F3F3</color>
 
-    <color name="mint">#34D6CE</color>
+    <color name="colorPrimary">@color/theme_main</color>
+    <color name="colorPrimaryDark">@color/theme_dark</color>
+    <color name="colorAccent">@color/theme_dark</color>
 </resources>

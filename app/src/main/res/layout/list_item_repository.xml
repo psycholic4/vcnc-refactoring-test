@@ -22,12 +22,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:text="@{viewModel.reposiory.fullName}"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/theme_contents_black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:name="@{viewModel.repository}"
             tools:text="psycholic4/vcnc-refactoring-test"/>
         <TextView
             android:id="@+id/description"
@@ -37,10 +38,23 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="4dp"
             android:text="@{viewModel.repository.description}"
+            android:textColor="@color/theme_contents_darkgray"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name"
             tools:layout_editor_absoluteX="0dp"
             tools:text="Test project for refactoring Between."/>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/theme_contents_lightgray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description"/>
     </android.support.constraint.ConstraintLayout>
 </layout>
