@@ -24,12 +24,13 @@
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/audiowide"
+            android:text="@{viewModel.getName()}"
             android:textColor="@color/theme_contents_black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:name="@{viewModel.repository}"
             tools:text="psycholic4/vcnc-refactoring-test"/>
         <TextView
             android:id="@+id/description"
