@@ -8,7 +8,6 @@ import android.text.style.StyleSpan
 import android.widget.TextView
 import kr.co.vcnc.android.sample.model.GithubRepository
 
-
 class RepositoryListItemViewModel(val repository: GithubRepository)
 
 @BindingAdapter("name")

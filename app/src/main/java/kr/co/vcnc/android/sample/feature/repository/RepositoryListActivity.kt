@@ -9,7 +9,6 @@ import kr.co.vcnc.android.sample.R
 import kr.co.vcnc.android.sample.databinding.ActivityRepositoryListBinding
 import javax.inject.Inject
 
-
 class RepositoryListActivity : AppCompatActivity() {
     @Inject lateinit var viewModel: RepositoryListViewModel
 
