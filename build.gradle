@@ -1,29 +1,26 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.1.2-5'
+    ext.kotlinVersion = "1.1.2-5"
     repositories {
-        maven { url "https://maven.google.com" }
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha5'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
-allprojects {
-    repositories {
-        maven { url "https://maven.google.com" }
-        jcenter()
-        mavenCentral()
-    }
-}
-
 subprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+
     configurations {
         ktlint
     }
@@ -50,4 +47,24 @@ subprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    // SDK and tools
+    buildToolsVersion = "26.0.0"
+    compileSdkVersion = 26
+    minSdkVersion = 16
+    targetSdkVersion = 26
+
+    // App dependencies
+    supportLibraryVersion = "26.0.0-beta1"
+    multidexVersion = "1.0.1"
+    constraintLayoutVersion = "1.0.2"
+    databindingCompilerVersion = "3.0.0-alpha5"
+    rxJavaVersion = "2.1.1"
+    rxAndroidVersion = "2.0.1"
+    daggerVersion = "2.11"
+    okHttpVersion = "3.8"
+    retrofitVersion = "2.3.0"
+    gsonVersion = "2.8.1"
 }

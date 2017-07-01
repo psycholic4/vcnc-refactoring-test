@@ -18,11 +18,11 @@ buildscript {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion rootProject.compileSdkVersion
     defaultConfig {
         applicationId "kr.co.vcnc.android.sample"
-        targetSdkVersion 26
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -32,13 +32,14 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            crunchPngs true
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
     flavorDimensions "base"
     productFlavors {
         pre21 {
-            minSdkVersion 16
+            minSdkVersion rootProject.minSdkVersion
             dimension "base"
         }
         post21 {
@@ -55,28 +56,26 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation(project(":android-libs"))
-    implementation "com.android.support:multidex:1.0.1"
-    // If use 26.0.0-beta2, layout preview not working correctly in Android Studio 3.0 canary 4
-    implementation "com.android.support:support-compat:26.0.0-beta1"
-    implementation "com.android.support:support-fragment:26.0.0-beta1"
-    implementation "com.android.support:appcompat-v7:26.0.0-beta1"
-    implementation "com.android.support:cardview-v7:26.0.0-beta1"
-    implementation "com.android.support:recyclerview-v7:26.0.0-beta1"
-    implementation "com.android.support:design:26.0.0-beta1"
-    implementation "com.android.support:support-vector-drawable:26.0.0-beta1"
-    implementation "com.android.support.constraint:constraint-layout:1.0.2"
-    implementation "io.reactivex.rxjava2:rxjava:2.1.0"
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
-    implementation "com.google.dagger:dagger:2.11"
-    kapt "com.google.dagger:dagger-compiler:2.11"
-    implementation "com.squareup.retrofit2:retrofit:2.3.0"
-    implementation "com.squareup.retrofit2:converter-jackson:2.3.0"
-    implementation "com.fasterxml.jackson.core:jackson-core:2.8.7"
-    implementation "com.fasterxml.jackson.core:jackson-databind:2.8.7"
-    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.7"
-    implementation "com.squareup.okhttp3:okhttp:3.8.0"
-    kapt "com.android.databinding:compiler:3.0.0-alpha4"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    api(project(":android-libs"))
+    implementation "com.android.support:multidex:$rootProject.multidexVersion"
+    // If use 26.0.0-beta2, layout preview not working correctly in Android Studio 3.0 canary 5
+    implementation "com.android.support:support-compat:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:support-fragment:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:support-vector-drawable:$rootProject.supportLibraryVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
+    kapt "com.android.databinding:compiler:$rootProject.databindingCompilerVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 }

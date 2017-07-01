@@ -1,11 +1,8 @@
 package kr.co.vcnc.android.sample.inject.module
 
 import android.content.Context
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import kr.co.vcnc.android.sample.BuildConfig
@@ -13,7 +10,7 @@ import kr.co.vcnc.android.sample.api.GithubService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -22,26 +19,8 @@ import javax.inject.Singleton
 class NetworkModule {
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(context: Context): OkHttpClient {
         return OkHttpClient.Builder()
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .build()
-    }
-
-    @Provides
-    @Singleton
-    @Named(SERVER_GITHUB)
-    fun provideGithubRetrofit(context: Context): Retrofit {
-        // TODO: choose json library
-        val mapper = ObjectMapper()
-        mapper.registerModule(KotlinModule())
-        mapper.propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-
-        val httpClient = OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
@@ -54,10 +33,20 @@ class NetworkModule {
                     chain.proceed(request)
                 }
                 .build()
+    }
+
+    @Provides
+    @Singleton
+    @Named(SERVER_GITHUB)
+    fun provideGithubRetrofit(httpClient: OkHttpClient): Retrofit {
+        val gson = GsonBuilder()
+                .serializeNulls()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create()
 
         return Retrofit.Builder()
                 .baseUrl("https://api.github.com")
-                .addConverterFactory(JacksonConverterFactory.create(mapper))
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient)
                 .build()
     }
