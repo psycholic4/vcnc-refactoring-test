@@ -1,6 +1,5 @@
 package kr.co.vcnc.android.sample.feature.repository
 
-import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kr.co.vcnc.android.sample.api.GithubService
@@ -13,15 +12,14 @@ class RepositoryListViewModel @Inject constructor() {
 
     // TODO: loadMore
     fun loadRepositories() {
-        Maybe.fromCallable {
-            githubService
-                    .searchRepositories("topic:android", 0, 32)
-                    .execute()
-                    .body()
-        }.subscribeOn(Schedulers.io())
+        githubService
+                .searchRepositories("topic:android", 0, 32)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ searchResult ->
-                    adapter.repositories = searchResult?.items ?: arrayListOf()
+                    adapter.repositories = searchResult.items
+                }, { throwable ->
+                    // TODO: logger
                 })
     }
 }
