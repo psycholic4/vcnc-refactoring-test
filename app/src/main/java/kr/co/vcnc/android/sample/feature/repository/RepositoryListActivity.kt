@@ -2,19 +2,19 @@ package kr.co.vcnc.android.sample.feature.repository
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import kr.co.vcnc.android.sample.MyApplication
 import kr.co.vcnc.android.sample.R
 import kr.co.vcnc.android.sample.databinding.ActivityRepositoryListBinding
 import javax.inject.Inject
 
-class RepositoryListActivity : AppCompatActivity() {
+class RepositoryListActivity : RxAppCompatActivity() {
     @Inject lateinit var viewModel: RepositoryListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         MyApplication.applicationComponent
-                .plus(RepositoryModule(this))
+                .plus(RepositoryModule(this, lifecycle()))
                 .inject(this)
         super.onCreate(savedInstanceState)
 

@@ -1,8 +1,7 @@
 package kr.co.vcnc.android.sample.inject.module
 
 import android.content.Context
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.GsonBuilder
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import kr.co.vcnc.android.sample.BuildConfig
@@ -39,12 +38,7 @@ class NetworkModule {
     @Provides
     @Singleton
     @Named(SERVER_GITHUB)
-    fun provideGithubRetrofit(httpClient: OkHttpClient): Retrofit {
-        val gson = GsonBuilder()
-                .serializeNulls()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create()
-
+    fun provideGithubRetrofit(gson: Gson, httpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl("https://api.github.com")
                 .addConverterFactory(GsonConverterFactory.create(gson))

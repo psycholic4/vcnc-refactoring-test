@@ -26,7 +26,10 @@
             android:name=".feature.repository.RepositoryListActivity"
             android:screenOrientation="portrait">
         </activity>
-
+        <activity
+            android:name=".feature.repository.RepositoryDetailActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts"/>

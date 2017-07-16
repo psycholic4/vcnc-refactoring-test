@@ -1,5 +1,10 @@
 package kr.co.vcnc.android.sample.model
 
+import android.graphics.Typeface
+import android.text.SpannableString
+import android.text.TextUtils
+import android.text.style.StyleSpan
+
 data class GithubRepository(
         val id: Long,
         val name: String,
@@ -71,4 +76,10 @@ data class GithubRepository(
         val watchers: Long,
         val defaultBranch: String?,
         val score: Double
-)
+) {
+    fun getNameSpan(): CharSequence {
+        val name = SpannableString(name)
+        name.setSpan(StyleSpan(Typeface.BOLD), 0, name.length, 0)
+        return TextUtils.concat(owner.login, " / ", name)
+    }
+}

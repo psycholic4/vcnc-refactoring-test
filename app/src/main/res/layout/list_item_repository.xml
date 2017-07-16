@@ -11,6 +11,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{viewModel::onClick}"
         android:paddingBottom="4dp"
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
@@ -25,7 +26,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/audiowide"
-            android:text="@{viewModel.getName()}"
+            android:text="@{viewModel.repository.getNameSpan()}"
             android:textColor="@color/theme_contents_black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +63,7 @@
                 android:id="@+id/star_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_star_black_24dp"/>
+                app:srcCompat="@drawable/ic_star_24dp"/>
             <TextView
                 android:id="@+id/star_count"
                 android:layout_width="wrap_content"
@@ -76,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:visibility="@{viewModel.repository.forksCount > 0 ? View.VISIBLE : View.GONE}"
-                app:srcCompat="@drawable/ic_call_split_black_24dp"/>
+                app:srcCompat="@drawable/ic_call_split_24dp"/>
             <TextView
                 android:id="@+id/fork_count"
                 android:layout_width="wrap_content"

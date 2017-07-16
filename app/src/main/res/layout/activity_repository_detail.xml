@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_contents_foggy"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:textColor="@color/theme_contents_black"
+            android:textSize="16sp"
+            tools:text="psycholic4 / vcnc-refactoring-test"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/theme_contents_darkgray"/>
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textColor="@color/theme_contents_duskblack"
+            android:textSize="16sp"
+            tools:text="Test project for refactoring Between."/>
+        <LinearLayout
+            android:id="@+id/tree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:divider="@drawable/divider_tree"
+            android:orientation="vertical"
+            android:showDividers="middle"/>
+    </LinearLayout>
+</ScrollView>
