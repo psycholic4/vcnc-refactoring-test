@@ -11,6 +11,10 @@ import kr.co.vcnc.android.sample.extentions.widget.setDownloadableFonts
 import kr.co.vcnc.android.sample.model.GithubRepository
 
 class RepositoryListAdapter : RecyclerView.Adapter<RepositoryListAdapter.RepositoryViewHolder>() {
+    init {
+        setHasStableIds(true)
+    }
+
     var repositories: ArrayList<GithubRepository> = arrayListOf()
         set(value) {
             repositories.clear()
@@ -31,6 +35,10 @@ class RepositoryListAdapter : RecyclerView.Adapter<RepositoryListAdapter.Reposit
 
     override fun getItemCount(): Int {
         return repositories.size
+    }
+
+    override fun getItemId(position: Int): Long {
+        return repositories[position].id
     }
 
     class RepositoryViewHolder(val binding: ListItemRepositoryBinding) : RecyclerView.ViewHolder(binding.root) {

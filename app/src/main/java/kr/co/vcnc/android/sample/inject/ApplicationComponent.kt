@@ -2,6 +2,7 @@ package kr.co.vcnc.android.sample.inject
 
 import com.google.gson.Gson
 import dagger.Component
+import kr.co.vcnc.android.sample.database.DatabaseModule
 import kr.co.vcnc.android.sample.feature.repository.RepositoryComponent
 import kr.co.vcnc.android.sample.feature.repository.RepositoryDetailComponent
 import kr.co.vcnc.android.sample.feature.repository.RepositoryDetailModule
@@ -15,7 +16,8 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(
         ApplicationModule::class,
         NetworkModule::class,
-        SerializationModule::class
+        SerializationModule::class,
+        DatabaseModule::class
 ))
 interface ApplicationComponent {
     fun plus(module: RepositoryModule): RepositoryComponent

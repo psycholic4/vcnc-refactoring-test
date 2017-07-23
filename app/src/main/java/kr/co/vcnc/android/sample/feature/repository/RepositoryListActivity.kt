@@ -24,6 +24,7 @@ class RepositoryListActivity : RxAppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = viewModel.adapter
 
+        viewModel.subscribeDatabase()
         viewModel.loadRepositories()
     }
 }

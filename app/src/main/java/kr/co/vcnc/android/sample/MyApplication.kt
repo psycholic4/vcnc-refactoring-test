@@ -5,20 +5,16 @@ import android.content.Context
 import android.os.Handler
 import android.os.HandlerThread
 import android.support.multidex.MultiDex
+import android.support.multidex.MultiDexApplication
 import kr.co.vcnc.android.sample.inject.ApplicationComponent
 import kr.co.vcnc.android.sample.inject.DaggerApplicationComponent
 import kr.co.vcnc.android.sample.inject.module.ApplicationModule
 
-class MyApplication : Application() {
+class MyApplication : MultiDexApplication() {
     companion object {
         //platformStatic allow access it from java code
         @JvmStatic lateinit var applicationComponent: ApplicationComponent
         @JvmStatic lateinit var fontsHandler: Handler
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(base)
     }
 
     override fun onCreate() {
